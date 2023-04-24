@@ -1,17 +1,22 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Result
+from rest_framework import status
 from .models import Card
+from .serializers import CardSerializer
+from .serializers import ResultSerializer
+
 
 class GetScraperResults(APIView):
-    def get(self, request, format=None):
-        name = self.request.query_params.get('name', None)
-        card_type = self.request.query_params.get('card_type', None)
-        card_number = self.request.query_params.get('card_number', None)
-        condition = self.request.query_params.get('condition', None)
-        edition = self.request.query_params.get('edition', None)
-        rarity = self.request.query_params.get('rarity', None)
+    cardSerializer = CardSerializer
+    resultSerializer = ResultSerializer
 
-        card = Card(name=name, card_type=card_type, card_number=card_number, condition=condition, edition=edition, rarity=rarity)
-        
-        return None
+    def get_serializer_context(self):
+        return {
+            'request': self.request,
+            'format': self.format_kwarg,
+            'view': self
+        }
+
+    def get(self, request, format=None):
+        return Response(status=status.HTTP_200_OK)
