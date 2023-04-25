@@ -25,5 +25,5 @@ urlpatterns = router.urls
 
 urlpatterns += [
     path('admin/', admin.site.urls),
-    path('get-scraper-results/', views.GetScraperResults.as_view(), name='get-scraper-results'),
+    path('get/', views.card_list_prices, name='card_list_prices'),
 ]
