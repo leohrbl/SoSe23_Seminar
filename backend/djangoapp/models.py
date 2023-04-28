@@ -18,6 +18,7 @@ class Card(models.Model):
 class Result(models.Model):
     name = models.CharField(max_length=255)
     price = models.DecimalField
+    shop = models.CharField(max_length=255)
     origin = models.URLField
 
     class Meta:
