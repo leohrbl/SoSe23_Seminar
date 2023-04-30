@@ -1,10 +1,10 @@
 <script lang="ts">
-import CardForm from "@/components/CardForm.vue"
-import type Card from "@/types/Card";
-import PriceResultDetail from "@/components/PriceResultDetail.vue";
-import { ref } from "vue";
+import CardForm from '@/components/CardForm.vue'
+import type Card from '@/types/Card'
+import PriceResultDetail from '@/components/PriceResultDetail.vue'
+import { ref } from 'vue'
 export default {
-  name: "HomeView",
+  name: 'HomeView',
   components: {
     PriceResultDetail,
     CardForm
@@ -30,5 +30,5 @@ export default {
 
 <template>
   <CardForm v-if="!submitted" @submit="submit"></CardForm>
-  <PriceResultDetail v-if="submitted" :card="cardProp"></PriceResultDetail>
+  <PriceResultDetail v-if="cardProp && submitted" :card="cardProp"></PriceResultDetail>
 </template>
