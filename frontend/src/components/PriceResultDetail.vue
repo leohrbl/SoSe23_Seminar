@@ -24,6 +24,7 @@ import type Card from '@/types/Card'
 import { ref, onMounted, type PropType } from 'vue'
 import type Result from '@/types/Result'
 import ResultTable from '@/components/ResultTable.vue'
+import { getResultList } from "@/services/DataService";
 export default {
   name: 'PriceResultDetail',
   components: { ResultTable },
@@ -35,10 +36,11 @@ export default {
     }
   },
   setup(props: { card: Card }) {
-    const isLoading = ref<boolean>(false)
+    const isLoading = ref<boolean>(true)
     const results = ref<Result[]>()
-    onMounted(() => {
-      console.log(props.card.name)
+    onMounted(async () => {
+      results.value = await getResultList(props.card.name, props.card.number, props.card.edition, props.card.rarity)
+      isLoading.value = false
     })
     return {
       isLoading,

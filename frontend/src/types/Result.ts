@@ -1,6 +1,10 @@
 export default interface Result {
   name : string;
-  price: number;
-  shop: string;
-  origin: string;
+  edition : string;
+  rarity : string;
+  number : string
+  price : string;
+  shop : string;
+  productLink : string;
+  picture : string
 }

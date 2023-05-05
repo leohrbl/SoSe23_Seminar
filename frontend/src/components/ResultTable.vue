@@ -6,16 +6,37 @@
           <thead>
           <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
             <th class="px-4 py-3">Name</th>
-            <th class="px-4 py-3">Preis</th>
+            <th class="px-4 py-3">Edition</th>
+            <th class="px-4 py-3">Seltenheit</th>
+            <th class="px-4 py-3">Nummer</th>
+            <th class="px-4 py-3">Marktpreis</th>
             <th class="px-4 py-3">Anbieter</th>
-            <th class="px-4 py-3">URL</th>
+            <th class="px-4 py-3">Produkt Link</th>
           </tr>
           </thead>
           <tbody class="bg-white">
           <tr v-for="(result, index) in displayedData" :key="index" class="text-gray-700 hover:bg-red-300">
             <td class="px-4 py-3 border">
-              <div class="flex items-center text-sm">
+              <div class="flex items-center text-sm justify-between">
+                <!-- <img class="mr-12 flex w-50" :src="result.picture" alt="card picture">
+                <span class="text-lg ml-12">{{result.name}}</span>
+                -->
                 {{result.name}}
+              </div>
+            </td>
+            <td class="px-4 py-3 border">
+              <div class="flex items-center text-sm">
+                {{result.edition}}
+              </div>
+            </td>
+            <td class="px-4 py-3 border">
+              <div class="flex items-center text-sm">
+                {{result.rarity}}
+              </div>
+            </td>
+            <td class="px-4 py-3 border">
+              <div class="flex items-center text-sm">
+                {{result.number}}
               </div>
             </td>
             <td class="px-4 py-3 border">
@@ -30,7 +51,7 @@
             </td>
             <td class="px-4 py-3 border">
               <div class="flex items-center text-sm">
-                <a :href="result.origin" target="_blank">Click Here</a>
+                <a class="underline" :href="result.productLink" target="_blank">Click Here</a>
               </div>
             </td>
           </tr>

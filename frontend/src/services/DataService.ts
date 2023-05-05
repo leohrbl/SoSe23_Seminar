@@ -1,24 +1,28 @@
-import http from "../http-common";
-import type Card from "@/types/Card"
+import axios from 'axios';
+import type Result from "@/types/Result";
 
-class DataService {
+const BASE_URL = 'http://127.0.0.1:8000';
 
-  getCardParams(card: Card) {
-    const params = new URLSearchParams();
-    params.append('name', card.name);
-    params.append('type', card.type);
-    params.append('number', card.number);
-    params.append('condition', card.condition);
-    params.append('edition', card.edition);
-    params.append('rarity', card.rarity);
-    return params;
-  }
+async function getResultList(name: string, cardNumber: string, edition: string, rarity: string): Promise<Result[]> {
+  const response = await axios.get(`${BASE_URL}/get/`, {
+    params: {
+      name,
+      card_number: cardNumber,
+      edition,
+      rarity,
+    },
+  });
 
-  getCardPrices(card: Card) {
-    return http.get('/get', {
-      params: this.getCardParams(card)
-    })
-  }
+  return response.data.map((result: any) => ({
+    name: result.name,
+    edition: result.edition,
+    rarity: result.rarity,
+    number: result.card_number,
+    price: result.market_price,
+    shop: result.shop,
+    productLink: result.product_link,
+    picture: result.picture_url,
+  }));
 }
 
-export default new DataService()
+export {getResultList};

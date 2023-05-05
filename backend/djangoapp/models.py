@@ -5,9 +5,7 @@ from django.db import models
 
 class Card(models.Model):
     name = models.CharField(max_length=255)
-    card_type = models.CharField(max_length=255)
     card_number = models.CharField(max_length=255)
-    condition = models.CharField(max_length=255)
     edition = models.CharField(max_length=255)
     rarity = models.CharField(max_length=255)
 
@@ -17,9 +15,15 @@ class Card(models.Model):
 
 class Result(models.Model):
     name = models.CharField(max_length=255)
-    price = models.DecimalField
+    edition = models.CharField(max_length=255)
+    rarity = models.CharField(max_length=255)
+    card_number = models.CharField(max_length=255)
+    market_price = models.CharField(max_length=255)
     shop = models.CharField(max_length=255)
-    origin = models.URLField
+    product_link = models.CharField(max_length=255)
+    picture_url = models.CharField(max_length=255)
 
     class Meta:
         managed = False
+
+

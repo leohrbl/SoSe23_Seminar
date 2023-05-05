@@ -4,7 +4,6 @@ from .models import Result
 
 
 class CardSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Card
         fields = '__all__'
@@ -15,7 +14,10 @@ class CardSerializer(serializers.ModelSerializer):
 
 
 class ResultSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Result
         fields = '__all__'
+
+    def create(self, validated_data):
+        result = Card(**validated_data)
+        return result

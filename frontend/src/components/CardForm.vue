@@ -19,28 +19,10 @@
           />
         </div>
         <div class="pt-3">
-          <label class="text-sm font-bold text-gray-600 block">Typ</label>
-          <input
-            required
-            v-model="card.type"
-            type="text"
-            class="w-full p-2 border border-gray-300 rounded-md mt-1"
-          />
-        </div>
-        <div class="pt-3">
           <label class="text-sm font-bold text-gray-600 block">Nummer</label>
           <input
             required
             v-model="card.number"
-            type="text"
-            class="w-full p-2 border border-gray-300 rounded-md mt-1"
-          />
-        </div>
-        <div class="pt-3">
-          <label class="text-sm font-bold text-gray-600 block">Zustand</label>
-          <input
-            required
-            v-model="card.condition"
             type="text"
             class="w-full p-2 border border-gray-300 rounded-md mt-1"
           />
