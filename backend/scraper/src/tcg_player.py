@@ -26,32 +26,36 @@ def scrape_tcg_player(card: Card, driver: uc) -> List[Result]:
         if i == 5:
             break
         items = soup.find_all("div", class_="search-result")
-        for item in items:
-            name = item.find('span', class_='search-result__title').text
-            edition = item.find('h4', class_='search-result__subtitle').text
-            rarity_number_string = item.find('section', class_='search-result__rarity').text.replace('·', '').strip()
-            rarity_number_arr = rarity_number_string.rsplit(" ", 1)
-            rarity = rarity_number_arr[0]
-            card_number = rarity_number_arr[1]
-            if item.find('section', class_='search-result__market-price--unavailable') is None:
-                market_price = item.find('span', class_='search-result__market-price--value').text
-            else:
-                market_price = 'unavailable'
-            shop = 'TCGPlayer'
-            product_link = base_url + item.find('a')['href']
-            picture_url = item.find('img')['src']
-
-            results.append(Result(
-                name=name,
-                edition=edition,
-                rarity=rarity,
-                card_number=card_number,
-                market_price=market_price,
-                shop=shop,
-                product_link=product_link,
-                picture_url=picture_url
-            ))
+        convert_results(base_url, items, results)
     return results
+
+
+def convert_results(base_url, items, results):
+    for item in items:
+        name = item.find('span', class_='search-result__title').text
+        edition = item.find('h4', class_='search-result__subtitle').text
+        rarity_number_string = item.find('section', class_='search-result__rarity').text.replace('·', '').strip()
+        rarity_number_arr = rarity_number_string.rsplit(" ", 1)
+        rarity = rarity_number_arr[0]
+        card_number = rarity_number_arr[1]
+        if item.find('section', class_='search-result__market-price--unavailable') is None:
+            market_price = item.find('span', class_='search-result__market-price--value').text
+        else:
+            market_price = 'unavailable'
+        shop = 'TCGPlayer'
+        product_link = base_url + item.find('a')['href']
+        picture_url = item.find('img')['src']
+
+        results.append(Result(
+            name=name,
+            edition=edition,
+            rarity=rarity,
+            card_number=card_number,
+            market_price=market_price,
+            shop=shop,
+            product_link=product_link,
+            picture_url=picture_url
+        ))
 
 
 def get_last_page(soup: BeautifulSoup) -> int:

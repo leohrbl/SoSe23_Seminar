@@ -5,7 +5,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 def get_driver(proxy: str) -> uc:
     options = uc.ChromeOptions()
-    options.headless = True
     options.add_argument('--disable-notifications')
     options.add_argument('--incognito')
     options.add_argument('--disable-extensions')
